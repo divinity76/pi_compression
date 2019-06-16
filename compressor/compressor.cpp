@@ -112,11 +112,10 @@ int main(int argc, char *argv[])
         std::cout << "offset: " << best_offset << " matches: " << uint_fast16_t(best_offset_matches) << std::endl;
         // optimized for little-endian...
         const uint32_t pack32_offset=HETOLE32(uint32_t(best_offset));
-        memcpy(packed,&pack32_offset,sizeof(pack32_offset));
+        memcpy(&packed[0],&pack32_offset,sizeof(pack32_offset));
         const uint8_t pack8_matches=uint8_t(best_offset_matches);
         memcpy(&packed[sizeof(pack32_offset)],&pack8_matches,sizeof(pack8_matches));
         outfile.write(packed, sizeof(packed));
-        std::cout << "outfile pos: " << outfile.tellp() << std::endl;
         compress_binary.erase(0,best_offset_matches);
     }
 }
