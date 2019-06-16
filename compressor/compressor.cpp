@@ -50,7 +50,9 @@
 static std::string file_get_contents(const std::string &$filename)
 {
     std::ostringstream ss;
-    ss << std::ifstream($filename).rdbuf();
+    std::ifstream ifs($filename,std::ifstream::binary);
+    ifs.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
+    ss << ifs.rdbuf();
     return ss.str();
 }
 int main(int argc, char *argv[])
