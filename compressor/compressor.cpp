@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     std::ofstream outfile (save_path,std::ofstream::binary);
-    outfile.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
+    outfile.exceptions ( std::ofstream::failbit | std::ofstream::badbit );
     char packed[5];
     while(compress_binary.size()>0)
     {
