@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
     }
     std::ofstream outfile (save_path,std::ofstream::binary);
     outfile.exceptions ( std::ofstream::failbit | std::ofstream::badbit );
-    char packed[5];
+    char packed[sizeof(uint32_t)+sizeof(uint8_t)];
     while(compress_binary.size()>0)
     {
         uint_fast32_t best_offset=0;
