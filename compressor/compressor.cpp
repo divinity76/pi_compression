@@ -92,18 +92,11 @@ int main(int argc, char *argv[])
             uint_fast8_t matches=0;
             for(uint_fast32_t binary_offset=0; binary_offset<compress_binary.size(); ++binary_offset)
             {
-                if(compress_binary[binary_offset]==pi_binary[pi_offset+binary_offset])
-                {
-                    ++matches;
-                }
-                else
+                if(compress_binary[binary_offset]!=pi_binary[pi_offset+binary_offset] || matches>=UINT8_MAX)
                 {
                     break;
                 }
-                if(matches>=UINT8_MAX)
-                {
-                    break;
-                }
+                ++matches;
             }
             if(matches>best_offset_matches)
             {
